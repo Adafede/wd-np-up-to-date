@@ -1,0 +1,34 @@
+name: Build Table
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      BUILD_TABLE:
+        type: boolean
+        description: generate the table
+        default: true
+jobs:
+  build_table:
+    name: Build table
+    runs-on: macOS-latest
+    env:
+    defaults:
+      run:
+        shell: bash --login {0}
+    steps:
+        uses: actions/checkout@latest
+        uses: actions/cache@latest
+        uses: r-lib/actions/setup-r@latest
+          with:
+            extra-packages: any::pkgdown, local::.
+            needs: website
+        name: Install package
+        run: R CMD INSTALL .
+       name: Build table
+        run: |
+          Rscript inst/scripts/prettyStructuresTable.R
