@@ -20,9 +20,9 @@ jobs:
       run:
         shell: bash --login {0}
     steps:
-        - uses: actions/checkout@latest
-        - uses: actions/cache@latest
-        - uses: r-lib/actions/setup-r@latest
+        - uses: actions/checkout@v3
+        - uses: actions/cache@v3
+        - uses: r-lib/actions/setup-r@v3
           with:
             extra-packages: any::pkgdown, local::.
             needs: website
