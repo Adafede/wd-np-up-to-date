@@ -1,0 +1,63 @@
+Package: wdUpToDateNP
+Title: wdUpToDateNP
+Version: 0.0.1
+Authors@R: c(
+    person("Adriano", "Rutz", , "adriano.rutz@unige.ch", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-0443-9902"))
+  )
+Maintainer: Adriano Rutz <adriano.rutz@unige.ch>
+Description: A small service to get up-to-date compounds found in taxon lists.
+License: GPL (>= 3)
+URL: https://github.com/Adafede/wd-np-up-to-date,
+    https://github.com/Adafede/wd-np-up-to-date/
+BugReports: 
+    https://github.com/Adafede/wd-np-up-to-date/issues
+Depends:
+    R (>= 4.2.0)
+Imports:
+    curl,
+    dplyr,
+    future,
+    future.apply,
+    gt,
+    htmltools,
+    lifecycle,
+    progressr
+    purrr,
+    readr,
+    rlang (>= 0.4.11),
+    tidyr,
+    WikidataQueryServiceR,
+    yaml
+Suggests: 
+    covr,
+    knitr (>= 1.1.0),
+    pkgdown,
+    roxygen2,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    utils
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Collate:
+    'check_export_dir.R'
+    'format_gt.R'
+    'load_lotus.R'
+    'molinfo.R'
+    'parse_yaml_params.R'
+    'parse_yaml_paths.R'
+    'prettyTables_progress.R'
+    'queries_progress.R'
+    'save_prettySubtables_progress.R'
+    'save_prettyTables_progress.R'
+    'sqlFromFile.R'
+    'subtables_progress.R'
+    'tables_progress.R'
+    'wiki_progress.R'
+    'y_as_na.R'
+VignetteBuilder: 
+    knitr
