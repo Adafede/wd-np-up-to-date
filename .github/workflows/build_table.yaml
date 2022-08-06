@@ -7,11 +7,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      BUILD_TABLE:
-        type: boolean
-        description: generate the table
-        default: true
   schedule:
     - cron: 0 0 * * * # At the end of every day
     
@@ -30,9 +25,6 @@ jobs:
         shell: bash --login {0}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      isPush: ${{ github.event_name == 'push' }}
     steps:
         - name: Checkout
           uses: actions/checkout@v3
@@ -45,21 +37,10 @@ jobs:
               ci-cache-${{ env.DEFAULT_BRANCH_REF }}
         - name: Setup Pages
           uses: actions/configure-pages@v1
-        - uses: r-lib/actions/setup-r@v2
-          with:
-            use-public-rspm: true
-        - uses: r-lib/actions/setup-r-dependencies@v2
-          with:
-            extra-packages: any::pkgdown, local::.
-            needs: website
-        - name: Install Package
-          run: R CMD INSTALL .
-        - name: Build Table
-          run: |
-            Rscript inst/scripts/prettyStructuresTable.R
         - name: Create Index File
           run: |
-            echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
+            echo "Hello World" > index.html 
+            # echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
         - name: Upload Artifact
           uses: actions/upload-pages-artifact@v1
           with:
