@@ -64,7 +64,7 @@ jobs:
             echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
         - name: Upload artifact
           uses: actions/upload-pages-artifact@v1
-            with:
+          with:
             # Upload entire repository
             path: index.html
         - name: Deploy to GitHub Pages
