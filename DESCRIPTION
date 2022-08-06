@@ -25,6 +25,7 @@ Imports:
     lifecycle,
     progressr,
     purrr,
+    RCurl,
     readr,
     rlang (>= 0.4.11),
     splitstackshape,
