@@ -47,13 +47,14 @@ jobs:
           extra-packages: any::pkgdown, local::.
           needs: website
       - name: Install Package
-          run: R CMD INSTALL .
+        run: |
+          R CMD INSTALL .
       - name: Build
-          run: |
-            Rscript inst/scripts/prettyStructuresTable.R
+        run: |
+          Rscript inst/scripts/prettyStructuresTable.R
       - name: Create Index File
-          run: |
-            echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
+        run: |
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         with:
