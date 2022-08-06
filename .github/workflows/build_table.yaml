@@ -37,7 +37,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3
         - name: Cache
-        - uses: actions/cache@v3
+          uses: actions/cache@v3
           with:
             path: ci/cache
             key: ci-cache-${{ github.ref }}
