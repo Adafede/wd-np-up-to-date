@@ -1,5 +1,4 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name:  Build an index.html & Deploy to Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -52,13 +51,10 @@ jobs:
       - name: Build
         run: |
           Rscript inst/scripts/prettyStructuresTable.R
-      - name: Create Index File
-        run: |
-          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.'
+          path: 'output'
   
   deploy:
     needs: build

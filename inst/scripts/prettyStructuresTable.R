@@ -98,7 +98,7 @@ prettyTables <- prettyTables_progress(tables)
 # prettySubtables <- prettyTables_progress(subtables)
 
 message("Exporting html tables")
-gt::gtsave(data = prettyTables[[1]], filename = "index.html")
+gt::gtsave(data = prettyTables[[1]], filename = "output/index.html")
 
 end <- Sys.time()
 
