@@ -62,6 +62,5 @@ jobs:
         - name: Create Index File
           run: |
             echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
-            - name: publish-to-git
         - name: Push to Branch
           uses: seanmiddleditch/gha-publish-to-git@v2
