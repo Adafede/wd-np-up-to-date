@@ -60,13 +60,13 @@ jobs:
           run: |
             Rscript inst/scripts/prettyStructuresTable.R
         - name: Create Index File
-          run: |
-            echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
+          with:
+            branch: "gh-pages"
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            run: |
+              echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
         - name: Upload artifact
-          uses: actions/upload-pages-artifact@v1
+          uses: actions/upload-artifact@v3
           with:
             # Upload entire repository
-            path: '.'
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@main
+            path: index.html
