@@ -42,14 +42,16 @@ jobs:
           with:
             extra-packages: any::pkgdown, local::.
             needs: website
-        - name: Install package
+        - name: Install Package
           run: R CMD INSTALL .
-        - name: Build table
+        - name: Build Table
           run: |
             Rscript inst/scripts/prettyStructuresTable.R
-            
-        - name: Create index file
+        - name: Create Index File
           run: |
             echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;URL=/dev/index.html" />  <script language="javascript"> window.location.replace('/dev/index.html')</script></head></html>' > index.html
         - name: Upload Artifacts
           uses: actions/upload-artifact@v3
+          with:
+            name: my-artifact
+            path: index.html
