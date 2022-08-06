@@ -30,5 +30,4 @@ jobs:
         - name: Install package
           run: R CMD INSTALL .
         - name: Build table
-          run: |
-          Rscript inst/scripts/prettyStructuresTable.R
+          run: Rscript inst/scripts/prettyStructuresTable.R
