@@ -1,8 +1,7 @@
 name: Build Table
 on:
   push:
-    branches:
-      - main
+    - main
   pull_request:
     branches:
       - main
@@ -12,6 +11,8 @@ on:
         type: boolean
         description: generate the table
         default: true
+  schedule:
+    - cron: 0 0 * * * # At the end of every day
 jobs:
   build_table:
     name: Build table
