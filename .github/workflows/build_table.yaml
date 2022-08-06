@@ -16,7 +16,6 @@ jobs:
   build_table:
     name: Build table
     runs-on: macOS-latest
-    env:
     defaults:
       run:
         shell: bash --login {0}
