@@ -29,7 +29,7 @@ concurrency:
 jobs:
   build_table:
     name: Build table
-    runs-on: macOS-latest
+    runs-on: Ubuntu-latest
     defaults:
       run:
         shell: bash --login {0}
@@ -66,7 +66,7 @@ jobs:
           uses: actions/upload-pages-artifact@v1
           with:
             # Upload entire repository
-            path: '.'
+            path: 'index.html'
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@main
