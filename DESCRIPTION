@@ -22,7 +22,7 @@ Imports:
     gt,
     htmltools,
     lifecycle,
-    progressr
+    progressr,
     purrr,
     readr,
     rlang (>= 0.4.11),
