@@ -13,9 +13,10 @@ URL: https://github.com/Adafede/wd-np-up-to-date,
 BugReports: 
     https://github.com/Adafede/wd-np-up-to-date/issues
 Depends:
-    R (>= 4.2.0)
+    R (>= 4.1.0)
 Imports:
     curl,
+    devtools,
     dplyr,
     future,
     future.apply,
@@ -30,14 +31,10 @@ Imports:
     WikidataQueryServiceR,
     yaml
 Suggests: 
-    covr,
-    knitr (>= 1.1.0),
     pkgdown,
     roxygen2,
     rmarkdown,
-    testthat (>= 3.0.0),
     utils
-Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
@@ -59,5 +56,3 @@ Collate:
     'tables_progress.R'
     'wiki_progress.R'
     'y_as_na.R'
-VignetteBuilder: 
-    knitr
