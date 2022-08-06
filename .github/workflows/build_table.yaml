@@ -21,14 +21,14 @@ jobs:
       run:
         shell: bash --login {0}
     steps:
-        uses: actions/checkout@latest
-        uses: actions/cache@latest
-        uses: r-lib/actions/setup-r@latest
+        - uses: actions/checkout@latest
+        - uses: actions/cache@latest
+        - uses: r-lib/actions/setup-r@latest
           with:
             extra-packages: any::pkgdown, local::.
             needs: website
-        name: Install package
-        run: R CMD INSTALL .
-       name: Build table
-        run: |
+        - name: Install package
+          run: R CMD INSTALL .
+        - name: Build table
+         run: |
           Rscript inst/scripts/prettyStructuresTable.R
