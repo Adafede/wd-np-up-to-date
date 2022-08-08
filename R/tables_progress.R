@@ -19,6 +19,9 @@ tables_progress <- function(xs) {
           dplyr::relocate(structureImage, .after = structure) |>
           dplyr::relocate(structureLabel, .before = structure) |>
           dplyr::select(-art_doi, -structure_id, -structureSmiles) |>
+          dplyr::group_by(structure) |>
+          dplyr::add_count(sort = TRUE) |>
+          dplyr::select(-n) |>
           dplyr::group_by(chemical_class) |>
           dplyr::add_count(sort = TRUE) |>
           dplyr::select(-n) |>
