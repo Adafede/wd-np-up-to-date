@@ -1,4 +1,4 @@
-name:  Build an index.html & Deploy to Pages
+name:  Build index.html & Deploy to Pages
 
 on:
   # Runs on pushes targeting the default branch
