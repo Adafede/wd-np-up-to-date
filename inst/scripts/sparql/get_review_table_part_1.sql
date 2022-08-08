@@ -1,2 +1,2 @@
-SELECT ?structure ?structureLabel ?structure_id ?structureSmiles (GROUP_CONCAT(?taxon_name; SEPARATOR = "|") AS ?taxaLabels) (GROUP_CONCAT(?taxon; SEPARATOR = "|") AS ?taxa) (GROUP_CONCAT(?art_title; SEPARATOR = "|") AS ?referencesLabels) (GROUP_CONCAT(?art_doi; SEPARATOR = "|") AS ?references_ids) (GROUP_CONCAT(?art; SEPARATOR = "|") AS ?references) WHERE {
+SELECT DISTINCT ?structure ?structureLabel ?structure_id ?structureSmiles ?taxon_name ?taxon ?art_title ?art_doi ?art WHERE {
   ?taxon (wdt:P171*) wd:

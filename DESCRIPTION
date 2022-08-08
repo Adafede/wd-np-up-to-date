@@ -28,8 +28,6 @@ Imports:
     RCurl,
     readr,
     rlang (>= 0.4.11),
-    splitstackshape,
-    tidyr,
     WikidataQueryServiceR,
     yaml
 Suggests: 

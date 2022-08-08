@@ -59,11 +59,6 @@ genera <-
                      x = names(qids),
                      fixed = TRUE)]
 
-query_part_1 <- readr::read_file(paths$inst$scripts$sparql$review_1)
-query_part_2 <- readr::read_file(paths$inst$scripts$sparql$review_2)
-query_part_3 <- readr::read_file(paths$inst$scripts$sparql$review_3)
-query_part_4 <- readr::read_file(paths$inst$scripts$sparql$review_4)
-
 message("Loading LOTUS classified structures")
 structures_classified <- readr::read_delim(
   file = paths$inst$extdata$source$libraries$lotus,
@@ -78,6 +73,11 @@ structures_classified <- readr::read_delim(
   )
 ) |>
   dplyr::distinct()
+
+query_part_1 <- readr::read_file(paths$inst$scripts$sparql$review_1)
+query_part_2 <- readr::read_file(paths$inst$scripts$sparql$review_2)
+query_part_3 <- readr::read_file(paths$inst$scripts$sparql$review_3)
+query_part_4 <- readr::read_file(paths$inst$scripts$sparql$review_4)
 
 message("Building queries")
 queries <- queries_progress(xs =  qids)
