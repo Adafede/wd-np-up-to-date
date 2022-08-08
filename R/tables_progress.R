@@ -13,20 +13,12 @@ tables_progress <- function(xs) {
     FUN = function(x) {
       p()
       if (nrow(x != 0)) {
-        x |>
+        y <-  x |>
           dplyr::left_join(structures_classified) |>
           dplyr::mutate(structureImage = RCurl::curlEscape(structureSmiles)) |>
           dplyr::relocate(structureImage, .after = structure) |>
           dplyr::relocate(structureLabel, .before = structure) |>
-          dplyr::select(-references_ids, -structure_id, -structureSmiles) |>
-          splitstackshape::cSplit(
-            c("taxa", "taxaLabels", "references", "referencesLabels"),
-            sep = "|",
-            direction = "long"
-          ) |>
-          dplyr::group_by(structure) |>
-          tidyr::fill(c("taxa", "taxaLabels", "references", "referencesLabels"),
-                      .direction = "downup") |>
+          dplyr::select(-art_doi, -structure_id, -structureSmiles) |>
           dplyr::group_by(chemical_class) |>
           dplyr::add_count(sort = TRUE) |>
           dplyr::select(-n) |>
@@ -46,10 +38,10 @@ tables_progress <- function(xs) {
             `Chemical Pathway` = chemical_pathway,
             `Chemical Superclass` = chemical_superclass,
             `Chemical Class` = chemical_class,
-            `Taxon Name` = taxaLabels,
-            `Taxon ID` = taxa,
-            `Reference Title` = referencesLabels,
-            `Reference ID` = references
+            `Taxon Name` = taxon_name,
+            `Taxon ID` = taxon,
+            `Reference Title` = art_title,
+            `Reference ID` = art
           )
       } else {
         data.frame() |>
