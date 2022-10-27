@@ -2,3 +2,4 @@ docs/*
 inst/extdata/*
 output/*
 .Rproj.user
+.DS_Store
