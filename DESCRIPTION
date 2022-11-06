@@ -5,7 +5,7 @@ Authors@R: c(
     person("Adriano", "Rutz", , "rutz@imsb.biol.ethz.ch", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0443-9902"))
   )
-Maintainer: Adriano Rutz <adriano.rutz@unige.ch>
+Maintainer: Adriano Rutz <rutz@imsb.biol.ethz.ch>
 Description: A small service to get up-to-date compounds found in taxon lists.
 License: GPL (>= 3)
 URL: https://github.com/Adafede/wd-np-up-to-date,
