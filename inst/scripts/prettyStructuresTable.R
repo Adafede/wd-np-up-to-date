@@ -3,8 +3,7 @@ start <- Sys.time()
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/check_export_dir.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/format_gt.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_lotus.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/load_lotus.R")
+source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_last_version_from_zenodo.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/molinfo.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_params.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_paths.R")
@@ -24,7 +23,11 @@ paths <-
 params <-
   parse_yaml_params(def = "params.yaml", usr = "params.yaml")
 
-load_lotus()
+get_last_version_from_zenodo(
+  doi = paths$url$lotus$doi,
+  pattern = paths$urls$lotus$pattern,
+  path = paths$data$source$libraries$lotus
+)
 
 exports <-
   list(
