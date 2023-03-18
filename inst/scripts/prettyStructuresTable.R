@@ -8,7 +8,7 @@ source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/load_lot
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/molinfo.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_params.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_paths.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/prettyTables_progress.R")
+source(file = "R/prettyTables_progress.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/queries_progress.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/save_prettySubtables_progress.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/save_prettyTables_progress.R")
@@ -19,8 +19,10 @@ source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_pro
 progressr::handlers(global = TRUE)
 progressr::handlers("progress")
 
-paths <- parse_yaml_paths(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/paths.yaml")
-params <- parse_yaml_params(def = "params.yaml", usr = "params.yaml")
+paths <-
+  parse_yaml_paths(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/paths.yaml")
+params <-
+  parse_yaml_params(def = "params.yaml", usr = "params.yaml")
 
 load_lotus()
 
