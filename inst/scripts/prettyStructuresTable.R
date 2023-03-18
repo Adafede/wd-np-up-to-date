@@ -1,67 +1,47 @@
 start <- Sys.time()
 
-#' Packages
-packages_cran <-
-  c(
-    "devtools",
-    "dplyr",
-    "future",
-    "future.apply",
-    "ggplot2",
-    "gt",
-    "htmltools",
-    "plotly",
-    "progressr",
-    "purrr",
-    "RCurl",
-    "readr",
-    "rotl",
-    "splitstackshape",
-    "tidyr",
-    "WikidataQueryServiceR",
-    "yaml"
-  )
-
-source(file = "R/check_export_dir.R")
-source(file = "R/format_gt.R")
-source(file = "R/load_lotus.R")
-source(file = "R/molinfo.R")
-source(file = "R/parse_yaml_params.R")
-source(file = "R/parse_yaml_paths.R")
-source(file = "R/prettyTables_progress.R")
-source(file = "R/queries_progress.R")
-source(file = "R/save_prettySubtables_progress.R")
-source(file = "R/save_prettyTables_progress.R")
-source(file = "R/subtables_progress.R")
-source(file = "R/tables_progress.R")
-source(file = "R/wiki_progress.R")
-
-devtools::source_url(
-  "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_lotus.R"
-)
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/check_export_dir.R")
+source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/format_gt.R")
+source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_file.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/load_lotus.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/molinfo.R")
+source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_params.R")
+source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_paths.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/prettyTables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/queries_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/save_prettySubtables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/save_prettyTables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/subtables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/tables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R")
 
 progressr::handlers(global = TRUE)
 progressr::handlers("progress")
 
-paths <- parse_yaml_paths()
-params <- parse_yaml_params()
+paths <- parse_yaml_paths(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/paths.yaml")
+params <- parse_yaml_params(def = "params.yaml", usr = "params.yaml")
 
 load_lotus()
 
 exports <-
-  list(paths$data$path,
-       paths$data$tables$path)
+  list(
+    paths$data$path,
+    paths$data$tables$path
+  )
 
-qids <- params$organisms$wikidata |>  as.list()
+qids <- params$organisms$wikidata |> as.list()
 
 genera <-
-  names(qids)[!grepl(pattern = " ",
-                     x = names(qids),
-                     fixed = TRUE)]
+  names(qids)[!grepl(
+    pattern = " ",
+    x = names(qids),
+    fixed = TRUE
+  )]
 
 message("Loading LOTUS classified structures")
 structures_classified <- readr::read_delim(
-  file = paths$inst$extdata$source$libraries$lotus,
+  file = paths$data$source$libraries$lotus,
   col_select = c(
     "structure_id" = "structure_inchikey",
     "structure_smiles_2D",
@@ -80,7 +60,7 @@ query_part_3 <- readr::read_file(paths$inst$scripts$sparql$review_3)
 query_part_4 <- readr::read_file(paths$inst$scripts$sparql$review_4)
 
 message("Building queries")
-queries <- queries_progress(xs =  qids)
+queries <- queries_progress(xs = qids)
 
 message("Querying Wikidata")
 results <- wiki_progress(xs = queries)
