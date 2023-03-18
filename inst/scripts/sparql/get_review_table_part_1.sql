@@ -1,2 +1,2 @@
-SELECT DISTINCT ?structure ?structureLabel ?structure_id ?structureSmiles ?taxaLabels ?taxa ?referencesLabels ?references_ids ?references WHERE {
+SELECT DISTINCT ?structure ?structureLabel ?structure_id ?structureSmiles (?taxon_name AS ?taxaLabels) (?taxon AS ?taxa) (?art_title AS ?referencesLabels) (?art_doi AS ?references_ids) (?art AS ?references) WHERE {
   ?taxon (wdt:P171*) wd:
