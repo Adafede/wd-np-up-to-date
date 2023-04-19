@@ -1,26 +1,26 @@
 start <- Sys.time()
 
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/check_export_dir.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/check_export_dir.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/format_gt.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/format_gt.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_file.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_last_version_from_zenodo.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/molinfo.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/molinfo.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_params.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_paths.R")
 source(file = "R/prettyTables_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/queries_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/save_prettySubtables_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/save_prettyTables_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/subtables_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/tables_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/R/wiki_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/queries_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/save_prettySubtables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/save_prettyTables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/subtables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/tables_progress.R")
+source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R")
 
 progressr::handlers(global = TRUE)
 progressr::handlers("progress")
 
 paths <-
-  parse_yaml_paths(file = "https://raw.githubusercontent.com/Adafede/cascade/dev/paths.yaml")
+  parse_yaml_paths(file = "https://raw.githubusercontent.com/Adafede/cascade/main/paths.yaml")
 params <-
   parse_yaml_params(def = "params.yaml", usr = "params.yaml")
 
