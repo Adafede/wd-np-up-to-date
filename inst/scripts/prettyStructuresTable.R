@@ -5,6 +5,7 @@ source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/format_gt.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_file.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/get_last_version_from_zenodo.R")
+source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/log_debug.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/molinfo.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_params.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/parse_yaml_paths.R")
