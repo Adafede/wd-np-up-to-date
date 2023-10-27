@@ -51,7 +51,7 @@ structures_classified <- readr::read_delim(
   file = paths$data$source$libraries$lotus,
   col_select = c(
     "structure_id" = "structure_inchikey",
-    "structure_smiles_2D",
+    "structure_smiles_no_stereo" = "structure_smiles_2D",
     "structure_exact_mass",
     "structure_xlogp",
     "chemical_pathway" = "structure_taxonomy_npclassifier_01pathway",
