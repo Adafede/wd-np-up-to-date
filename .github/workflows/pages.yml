@@ -52,7 +52,7 @@ jobs:
         run: |
           Rscript inst/scripts/prettyStructuresTable.R
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'output'
   
