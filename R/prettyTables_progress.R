@@ -2,10 +2,10 @@
 #'
 #' @param xs
 #'
-#' @return
+#' @return NULL
 #' @export
 #'
-#' @examples
+#' @examples NULL
 prettyTables_progress <- function(xs) {
   p <- progressr::progressor(along = xs)
   future.apply::future_lapply(

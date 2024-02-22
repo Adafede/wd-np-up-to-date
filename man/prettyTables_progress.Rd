@@ -12,3 +12,6 @@ prettyTables_progress(xs)
 \description{
 Title
 }
+\examples{
+NULL
+}
