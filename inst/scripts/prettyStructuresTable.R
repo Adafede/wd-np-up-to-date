@@ -90,7 +90,7 @@ message("Generating pretty tables")
 prettyTables <- prettyTables_progress(tables) |>
   lapply(function(x) {
     x |>
-      opt_interactive()
+      opt_interactive(use_filters=TRUE)
   })
 
 # message("Generating pretty subtables")
