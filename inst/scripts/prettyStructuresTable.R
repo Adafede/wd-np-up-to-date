@@ -32,10 +32,7 @@ get_last_version_from_zenodo(
 )
 
 exports <-
-  list(
-    paths$data$path,
-    paths$data$tables$path
-  )
+  list(paths$data$path, paths$data$tables$path)
 
 qids <- params$organisms$wikidata |> as.list()
 
@@ -75,11 +72,26 @@ results <- wiki_progress(xs = queries)
 message("Cleaning tables and adding columns")
 tables <- tables_progress(results)
 
+message("Re-ordering")
+tables <- tables |>
+  lapply(function(x) {
+    x |>
+      dplyr::relocate(structure_smiles_no_stereo, .after = structureImage) |>
+      dplyr::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
+      dplyr::relocate(structure_xlogp, .after = structure_exact_mass) |>
+      dplyr::relocate(chemical_superclass, .before = structureLabel) |>
+      dplyr::relocate(chemical_class, .after = chemical_superclass)
+  })
+
 # message("Generating subtables based on chemical classification")
 # subtables <- subtables_progress(tables)
 
 message("Generating pretty tables")
-prettyTables <- prettyTables_progress(tables)
+prettyTables <- prettyTables_progress(tables) |>
+  lapply(function(x) {
+    x |>
+      opt_interactive()
+  })
 
 # message("Generating pretty subtables")
 # prettySubtables <- prettyTables_progress(subtables)
