@@ -80,7 +80,8 @@ tables <- tables |>
       dplyr::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
       dplyr::relocate(structure_xlogp, .after = structure_exact_mass) |>
       dplyr::relocate(chemical_superclass, .before = structureLabel) |>
-      dplyr::relocate(chemical_class, .after = chemical_superclass)
+      dplyr::relocate(chemical_class, .after = chemical_superclass) |> 
+      dplyr::mutate(structureImage = molinfo(structureImage))
   })
 
 # message("Generating subtables based on chemical classification")
