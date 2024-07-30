@@ -80,7 +80,7 @@ tables <- tables |>
       dplyr::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
       dplyr::relocate(structure_xlogp, .after = structure_exact_mass) |>
       dplyr::relocate(chemical_superclass, .before = structureLabel) |>
-      dplyr::relocate(chemical_class, .after = chemical_superclass) |> 
+      dplyr::relocate(chemical_class, .after = chemical_superclass) |>
       dplyr::mutate(structureImage = molinfo(structureImage))
   })
 
@@ -91,7 +91,7 @@ message("Generating pretty tables")
 prettyTables <- prettyTables_progress(tables) |>
   lapply(function(x) {
     x |>
-      opt_interactive(use_filters=TRUE)
+      opt_interactive(use_filters = TRUE)
   })
 
 # message("Generating pretty subtables")
