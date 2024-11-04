@@ -10,31 +10,21 @@ source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/subtable
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/tables_progress.R")
 source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_default_paths.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_file.R")
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_last_version_from_zenodo.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/log_debug.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/parse_yaml_params.R")
 source(file = "R/prettyTables_progress.R")
 
 progressr::handlers(global = TRUE)
 progressr::handlers("progress")
 
-paths <-
-  get_default_paths(yaml = "https://raw.githubusercontent.com/Adafede/cascade/main/paths.yaml")
-params <-
-  parse_yaml_params(def = "params.yaml", usr = "params.yaml")
+message("Getting last LOTUS version")
+ get_last_version_from_zenodo(
+    doi = "10.5281/zenodo.5794106",
+    pattern = "frozen_metadata.csv.gz",
+    "data/source/libraries/lotus.csv.gz"
+ )
 
-get_last_version_from_zenodo(
-  doi = paths$url$lotus$doi,
-  pattern = paths$urls$lotus$pattern,
-  path = paths$data$source$libraries$lotus
-)
-
-exports <-
-  list(paths$data$path, paths$data$tables$path)
-
-qids <- params$organisms$wikidata |> as.list()
+qids <-list(c("Swertia" = "Q163970"))
 
 genera <-
   names(qids)[!grepl(
@@ -45,7 +35,7 @@ genera <-
 
 message("Loading LOTUS classified structures")
 structures_classified <- readr::read_delim(
-  file = paths$data$source$libraries$lotus,
+  file = "data/source/libraries/lotus.csv.gz",
   col_select = c(
     "structure_id" = "structure_inchikey",
     "structure_smiles_no_stereo" = "structure_smiles_2D",
@@ -58,19 +48,25 @@ structures_classified <- readr::read_delim(
 ) |>
   dplyr::distinct()
 
-query_part_1 <- readr::read_file(paths$inst$scripts$sparql$review_1)
-query_part_2 <- readr::read_file(paths$inst$scripts$sparql$review_2)
-query_part_3 <- readr::read_file(paths$inst$scripts$sparql$review_3)
-query_part_4 <- readr::read_file(paths$inst$scripts$sparql$review_4)
+query_part_1 <- "SELECT ?structure ?structureLabel ?structure_id ?structureSmiles (GROUP_CONCAT(?taxon_name; SEPARATOR = \"|\") AS ?taxaLabels) (GROUP_CONCAT(?taxon; SEPARATOR = \"|\") AS ?taxa) (GROUP_CONCAT(?art_title; SEPARATOR = \"|\") AS ?referencesLabels) (GROUP_CONCAT(?art_doi; SEPARATOR = \"|\") AS ?references_ids) (GROUP_CONCAT(?art; SEPARATOR = \"|\") AS ?references) WHERE {\n  ?taxon (wdt:P171*) wd:"
+query_part_2 <- ";\n  wdt:P225 ?taxon_name.\n  ?structure wdt:P235 ?structure_id;\n  wdt:P233 ?structureSmiles;\n  p:P703 ?statement.\n  ?statement ps:P703 ?taxon;\n  prov:wasDerivedFrom ?ref.\n  ?ref pr:P248 ?art.\n  ?art wdt:P1476 ?art_title;\n  wdt:P356 ?art_doi;\n  wdt:P577 ?art_date.\n  FILTER(((YEAR(?art_date)) >= "
+query_part_3 <- " ) && ((YEAR(?art_date)) <= "
+query_part_4 <- " ))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". }\n}\nGROUP BY ?structure ?structure_id ?structureLabel ?structureSmiles"
 
 message("Building queries")
-queries <- queries_progress(xs = qids)
+  queries <- queries_progress(
+    xs = qids,
+    query_part_1 = query_part_1,
+    query_part_2 = query_part_2,
+    query_part_3 = query_part_3,
+    query_part_4 = query_part_4
+  )
 
 message("Querying Wikidata")
 results <- wiki_progress(xs = queries)
 
 message("Cleaning tables and adding columns")
-tables <- tables_progress(results)
+tables <- tables_progress(results, structures_classified = structures_classified)
 
 message("Re-ordering")
 tables <- tables |>
