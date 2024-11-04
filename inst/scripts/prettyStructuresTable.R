@@ -18,13 +18,13 @@ progressr::handlers(global = TRUE)
 progressr::handlers("progress")
 
 message("Getting last LOTUS version")
- get_last_version_from_zenodo(
-    doi = "10.5281/zenodo.5794106",
-    pattern = "frozen_metadata.csv.gz",
-    "data/source/libraries/lotus.csv.gz"
- )
+get_last_version_from_zenodo(
+  doi = "10.5281/zenodo.5794106",
+  pattern = "frozen_metadata.csv.gz",
+  "data/source/libraries/lotus.csv.gz"
+)
 
-qids <-list(c("Swertia" = "Q163970"))
+qids <- list(c("Swertia" = "Q163970"))
 
 genera <-
   names(qids)[!grepl(
@@ -54,13 +54,13 @@ query_part_3 <- " ) && ((YEAR(?art_date)) <= "
 query_part_4 <- " ))\n  SERVICE wikibase:label { bd:serviceParam wikibase:language \"[AUTO_LANGUAGE],en\". }\n}\nGROUP BY ?structure ?structure_id ?structureLabel ?structureSmiles"
 
 message("Building queries")
-  queries <- queries_progress(
-    xs = qids,
-    query_part_1 = query_part_1,
-    query_part_2 = query_part_2,
-    query_part_3 = query_part_3,
-    query_part_4 = query_part_4
-  )
+queries <- queries_progress(
+  xs = qids,
+  query_part_1 = query_part_1,
+  query_part_2 = query_part_2,
+  query_part_3 = query_part_3,
+  query_part_4 = query_part_4
+)
 
 message("Querying Wikidata")
 results <- wiki_progress(xs = queries)
@@ -84,10 +84,10 @@ tables <- tables |>
 # subtables <- subtables_progress(tables)
 
 message("Generating pretty tables")
-prettyTables <- prettyTables_progress(tables) |>
+prettyTables <- prettyTables_progress(tables, qids = qids) |>
   lapply(function(x) {
     x |>
-      opt_interactive(use_filters = TRUE)
+      gt::opt_interactive(use_filters = TRUE)
   })
 
 # message("Generating pretty subtables")
