@@ -10,7 +10,7 @@
 prettyTables_progress <- function(xs, qids) {
   p <- progressr::progressor(along = xs)
   xs |>
-   furrr::map(
+   furrr::future_map(
      .fun = function(x, qids) {
        p()
        temp_gt_function(
