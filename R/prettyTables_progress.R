@@ -13,7 +13,7 @@ prettyTables_progress <- function(xs, qids) {
    furrr::future_map(
      .f = function(x, qids) {
        p()
-       temp_gt_function(
+       format_gt(
          table = x,
          title = paste(
            "Compounds found in",
