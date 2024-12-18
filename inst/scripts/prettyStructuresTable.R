@@ -75,7 +75,7 @@ tables <- tables |>
       dplyr::relocate(chemical_pathway, .before = structureLabel) |>
       dplyr::relocate(chemical_superclass, .after = chemical_pathway) |>
       dplyr::relocate(chemical_class, .after = chemical_superclass) |>
-      dplyr::mutate(structureImage = molinfo(structureImage)) |> 
+      dplyr::mutate(structureImage = molinfo(structureImage)) |>
       dplyr::group_by(chemical_pathway)
   })
 
