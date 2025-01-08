@@ -11,9 +11,6 @@ source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation
 source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_last_version_from_zenodo.R")
 source(file = "R/prettyTables_progress.R")
 
-progressr::handlers(global = TRUE)
-progressr::handlers("progress")
-
 message("Getting last LOTUS version")
 get_last_version_from_zenodo(
   doi = "10.5281/zenodo.5794106",
