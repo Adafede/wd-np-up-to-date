@@ -40,7 +40,7 @@ structures_classified <- readr::read_delim(
     "chemical_class" = "structure_taxonomy_npclassifier_03class"
   )
 ) |>
-  dplyr::distinct()
+  tidytable::distinct()
 
 query_part_1 <- "SELECT ?structure ?structureLabel ?structure_id ?structureSmiles (GROUP_CONCAT(?taxon_name; SEPARATOR = \"|\") AS ?taxaLabels) (GROUP_CONCAT(?taxon; SEPARATOR = \"|\") AS ?taxa) (GROUP_CONCAT(?art_title; SEPARATOR = \"|\") AS ?referencesLabels) (GROUP_CONCAT(?art_doi; SEPARATOR = \"|\") AS ?references_ids) (GROUP_CONCAT(?art; SEPARATOR = \"|\") AS ?references) WHERE {\n  ?taxon (wdt:P171*) wd:"
 query_part_2 <- ";\n  wdt:P225 ?taxon_name.\n  ?structure wdt:P235 ?structure_id;\n  wdt:P233 ?structureSmiles;\n  p:P703 ?statement.\n  ?statement ps:P703 ?taxon;\n  prov:wasDerivedFrom ?ref.\n  ?ref pr:P248 ?art.\n  ?art wdt:P1476 ?art_title;\n  wdt:P356 ?art_doi;\n  wdt:P577 ?art_date.\n  FILTER(((YEAR(?art_date)) >= "
@@ -66,14 +66,14 @@ message("Re-ordering")
 tables <- tables |>
   lapply(function(x) {
     x |>
-      dplyr::relocate(structure_smiles_no_stereo, .after = structureImage) |>
-      dplyr::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
-      dplyr::relocate(structure_xlogp, .after = structure_exact_mass) |>
-      dplyr::relocate(chemical_pathway, .before = structureLabel) |>
-      dplyr::relocate(chemical_superclass, .after = chemical_pathway) |>
-      dplyr::relocate(chemical_class, .after = chemical_superclass) |>
-      dplyr::mutate(structureImage = molinfo(structureImage)) |>
-      dplyr::group_by(chemical_pathway)
+      tidytable::relocate(structure_smiles_no_stereo, .after = structureImage) |>
+      tidytable::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
+      tidytable::relocate(structure_xlogp, .after = structure_exact_mass) |>
+      tidytable::relocate(chemical_pathway, .before = structureLabel) |>
+      tidytable::relocate(chemical_superclass, .after = chemical_pathway) |>
+      tidytable::relocate(chemical_class, .after = chemical_superclass) |>
+      tidytable::mutate(structureImage = molinfo(structureImage)) |>
+      tidytable::group_by(chemical_pathway)
   })
 
 # message("Generating subtables based on chemical classification")
