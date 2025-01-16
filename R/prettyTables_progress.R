@@ -1,7 +1,7 @@
 #' Title
 #'
-#' @param xs
-#' @param qids
+#' @param xs Xs
+#' @param qids Qids
 #'
 #' @return NULL
 #' @export
