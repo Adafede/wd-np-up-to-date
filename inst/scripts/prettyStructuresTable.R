@@ -60,31 +60,40 @@ message("Querying Wikidata")
 results <- wiki_progress(xs = queries)
 
 message("Cleaning tables and adding columns")
-tables <- tables_progress(results, structures_classified = structures_classified)
+tables <- tables_progress(results, structures_classified = structures_classified) |>
+  purrr::map(
+    .f = function(x) {
+      x |> tidytable::distinct(structure, taxa, references, .keep_all = TRUE)
+    }
+  )
 
 message("Re-ordering")
 tables <- tables |>
-  lapply(function(x) {
-    x |>
-      tidytable::relocate(structure_smiles_no_stereo, .after = structureImage) |>
-      tidytable::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
-      tidytable::relocate(structure_xlogp, .after = structure_exact_mass) |>
-      tidytable::relocate(chemical_pathway, .before = structureLabel) |>
-      tidytable::relocate(chemical_superclass, .after = chemical_pathway) |>
-      tidytable::relocate(chemical_class, .after = chemical_superclass) |>
-      tidytable::mutate(structureImage = molinfo(structureImage)) |>
-      tidytable::group_by(chemical_pathway)
-  })
+  purrr::map(
+    .f = function(x) {
+      x |>
+        tidytable::relocate(structure_smiles_no_stereo, .after = structureImage) |>
+        tidytable::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
+        tidytable::relocate(structure_xlogp, .after = structure_exact_mass) |>
+        tidytable::relocate(chemical_pathway, .before = structureLabel) |>
+        tidytable::relocate(chemical_superclass, .after = chemical_pathway) |>
+        tidytable::relocate(chemical_class, .after = chemical_superclass) |>
+        tidytable::mutate(structureImage = molinfo(structureImage)) |>
+        tidytable::group_by(chemical_pathway)
+    }
+  )
 
 # message("Generating subtables based on chemical classification")
 # subtables <- subtables_progress(tables)
 
 message("Generating pretty tables")
 prettyTables <- prettyTables_progress(tables, qids = qids) |>
-  lapply(function(x) {
-    x |>
-      gt::opt_interactive(use_filters = TRUE)
-  })
+  purrr::map(
+    .f = function(x) {
+      x |>
+        gt::opt_interactive(use_filters = TRUE)
+    }
+  )
 
 # message("Generating pretty subtables")
 # prettySubtables <- prettyTables_progress(subtables)

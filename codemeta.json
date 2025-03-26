@@ -14,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.2 (2024-10-31)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
   "author": [
     {
       "@type": "Person",
@@ -114,19 +114,6 @@
     },
     "4": {
       "@type": "SoftwareApplication",
-      "identifier": "dplyr",
-      "name": "dplyr",
-      "version": ">= 1.1.4",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=dplyr"
-    },
-    "5": {
-      "@type": "SoftwareApplication",
       "identifier": "gt",
       "name": "gt",
       "version": ">= 0.10.1",
@@ -138,7 +125,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=gt"
     },
-    "6": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "import",
       "name": "import",
@@ -151,7 +138,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=import"
     },
-    "7": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "htmltools",
       "name": "htmltools",
@@ -164,7 +151,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=htmltools"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "lifecycle",
       "name": "lifecycle",
@@ -177,7 +164,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lifecycle"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "purrr",
       "name": "purrr",
@@ -190,7 +177,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
     },
-    "10": {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "RCurl",
       "name": "RCurl",
@@ -203,7 +190,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=RCurl"
     },
-    "11": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "readr",
       "name": "readr",
@@ -216,7 +203,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readr"
     },
-    "12": {
+    "11": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -229,7 +216,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "13": {
+    "12": {
       "@type": "SoftwareApplication",
       "identifier": "tidytable",
       "name": "tidytable",
@@ -242,7 +229,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tidytable"
     },
-    "14": {
+    "13": {
       "@type": "SoftwareApplication",
       "identifier": "WikidataQueryServiceR",
       "name": "WikidataQueryServiceR",
@@ -255,7 +242,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=WikidataQueryServiceR"
     },
-    "15": {
+    "14": {
       "@type": "SoftwareApplication",
       "identifier": "yaml",
       "name": "yaml",
