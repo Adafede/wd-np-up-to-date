@@ -1,14 +1,32 @@
 start <- Sys.time()
 
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/check_export_dir.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/format_gt.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/molinfo.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/queries_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/tables_progress.R")
-source(file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_file.R")
-source(file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_last_version_from_zenodo.R")
+source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/check_export_dir.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/format_gt.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/molinfo.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/queries_progress.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/tables_progress.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_file.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_last_version_from_zenodo.R"
+)
 source(file = "R/prettyTables_progress.R")
 
 message("Getting last LOTUS version")
@@ -21,11 +39,13 @@ get_last_version_from_zenodo(
 qids <- list(c("Swertia" = "Q163970"))
 
 genera <-
-  names(qids)[!grepl(
-    pattern = " ",
-    x = names(qids),
-    fixed = TRUE
-  )]
+  names(qids)[
+    !grepl(
+      pattern = " ",
+      x = names(qids),
+      fixed = TRUE
+    )
+  ]
 
 message("Loading LOTUS classified structures")
 structures_classified <- readr::read_delim(
@@ -60,7 +80,10 @@ message("Querying Wikidata")
 results <- wiki_progress(xs = queries)
 
 message("Cleaning tables and adding columns")
-tables <- tables_progress(results, structures_classified = structures_classified) |>
+tables <- tables_progress(
+  results,
+  structures_classified = structures_classified
+) |>
   purrr::map(
     .f = function(x) {
       x |> tidytable::distinct(structure, taxa, references, .keep_all = TRUE)
@@ -72,8 +95,14 @@ tables <- tables |>
   purrr::map(
     .f = function(x) {
       x |>
-        tidytable::relocate(structure_smiles_no_stereo, .after = structureImage) |>
-        tidytable::relocate(structure_exact_mass, .after = structure_smiles_no_stereo) |>
+        tidytable::relocate(
+          structure_smiles_no_stereo,
+          .after = structureImage
+        ) |>
+        tidytable::relocate(
+          structure_exact_mass,
+          .after = structure_smiles_no_stereo
+        ) |>
         tidytable::relocate(structure_xlogp, .after = structure_exact_mass) |>
         tidytable::relocate(chemical_pathway, .before = structureLabel) |>
         tidytable::relocate(chemical_superclass, .after = chemical_pathway) |>
