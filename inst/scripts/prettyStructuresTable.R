@@ -19,6 +19,9 @@ source(
   file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R"
 )
 source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/constants.R"
+)
+source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R"
 )
 source(
