@@ -27,6 +27,9 @@ source(
 source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_last_version_from_zenodo.R"
 )
+source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/validators.R"
+)
 source(file = "R/prettyTables_progress.R")
 
 message("Getting last LOTUS version")
