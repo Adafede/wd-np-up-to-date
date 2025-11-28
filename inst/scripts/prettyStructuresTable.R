@@ -31,10 +31,10 @@ source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_last_version_from_zenodo.R"
 )
 source(
-  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/logging_helpers.R"
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/logs_utils.R"
 )
 source(
-  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/validators.R"
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/validations_utils.R"
 )
 source(file = "R/prettyTables_progress.R")
 
