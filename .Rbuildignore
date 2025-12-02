@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^codemeta\.json$
+^[.]?air[.]toml$
+^\.vscode$
+^\.github$
