@@ -34,6 +34,9 @@ source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/logs_utils.R"
 )
 source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/retry_utils.R"
+)
+source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/validations_utils.R"
 )
 source(file = "R/prettyTables_progress.R")
