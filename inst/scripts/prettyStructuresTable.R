@@ -13,6 +13,9 @@ source(
   file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/queries_progress.R"
 )
 source(
+  file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/query_wikidata.R"
+)
+source(
   file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/tables_progress.R"
 )
 source(
