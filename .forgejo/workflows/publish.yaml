@@ -17,9 +17,6 @@ jobs:
     container:
       image: ghcr.io/rocker-org/r-ver:4.4
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
       - name: Install Quarto
         run: /rocker_scripts/install_quarto.sh
 
