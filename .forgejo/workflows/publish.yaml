@@ -37,7 +37,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: codeberg-small
+    runs-on: codeberg-tiny
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
