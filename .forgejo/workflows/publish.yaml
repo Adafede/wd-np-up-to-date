@@ -20,12 +20,6 @@ jobs:
       - name: Install Quarto
         run: /rocker_scripts/install_quarto.sh
 
-      - name: Cache R packages
-        uses: actions/cache@v3
-        with:
-          path: /usr/local/lib/R/site-library
-          key: r-pkgs-${{ hashFiles('DESCRIPTION') }}
-
       - name: Install R dependencies
         run: Rscript -e "install.packages(c('pkgdown'), repos='https://cloud.r-project.org')"
 
