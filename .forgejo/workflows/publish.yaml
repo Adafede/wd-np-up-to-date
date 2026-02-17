@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: codeberg-small
     container:
-      image: ghcr.io/rocker-org/verse:4.4
+      image: ghcr.io/rocker-org/verse:latest
     steps:
       - name: Install R dependencies
         run: Rscript -e "install.packages(c('pkgdown'), repos='https://cloud.r-project.org')"
