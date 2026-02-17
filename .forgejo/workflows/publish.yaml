@@ -14,28 +14,23 @@ concurrency:
 jobs:
   build:
     runs-on: codeberg-small
+    container:
+      image: ghcr.io/rocker-org/r-ver:4.4
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Cache
+      - name: Install Quarto
+        run: /rocker_scripts/install_quarto.sh
+
+      - name: Cache R packages
         uses: actions/cache@v3
         with:
-          path: ci/cache
-          key: ci-cache-${{ github.ref }}
-          restore-keys: |
-            ci-cache-${{ github.event.repository.default_branch }}
+          path: /usr/local/lib/R/site-library
+          key: r-pkgs-${{ hashFiles('DESCRIPTION') }}
 
-      - name: Setup R
-        uses: https://github.com/r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - name: Setup R dependencies
-        uses: https://github.com/r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::pkgdown, local::.
-          needs: website
+      - name: Install R dependencies
+        run: Rscript -e "install.packages(c('pkgdown'), repos='https://cloud.r-project.org')"
 
       - name: Install Package
         run: R CMD INSTALL .
