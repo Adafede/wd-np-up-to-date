@@ -29,6 +29,22 @@ jobs:
       - name: Build
         run: Rscript inst/scripts/prettyStructuresTable.R
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output
+          path: output/
+
+  deploy:
+    needs: build
+    runs-on: codeberg-small
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: output
+          path: output/
+
       - name: Deploy to Codeberg Pages
         uses: actions/git-pages@v2
         with:
