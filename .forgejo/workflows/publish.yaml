@@ -21,7 +21,7 @@ jobs:
         run: Rscript -e "install.packages(c('pkgdown'), repos='https://cloud.r-project.org')"
 
       - name: Install Package
-        run: R CMD INSTALL .
+        run: R CMD INSTALL ${{ github.workspace }}
 
       - name: Build
         run: Rscript inst/scripts/prettyStructuresTable.R
