@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Install R dependencies
-        run: Rscript -e "install.packages(c('pkgdown'), repos='https://cloud.r-project.org')"
+        run: Rscript -e "install.packages(c('gt', 'import', 'lgr', 'RCurl', 'tidytable'), repos='https://cloud.r-project.org')"
 
       - name: Install Package
         run: R CMD INSTALL .
