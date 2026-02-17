@@ -17,11 +17,14 @@ jobs:
     container:
       image: ghcr.io/rocker-org/verse:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
       - name: Install R dependencies
         run: Rscript -e "install.packages(c('pkgdown'), repos='https://cloud.r-project.org')"
 
       - name: Install Package
-        run: R CMD INSTALL ${{ github.workspace }}
+        run: R CMD INSTALL .
 
       - name: Build
         run: Rscript inst/scripts/prettyStructuresTable.R
