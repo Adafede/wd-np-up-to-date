@@ -18,7 +18,7 @@ jobs:
       image: ghcr.io/rocker-org/verse:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install R dependencies
         run: Rscript -e "install.packages(c('gt', 'import', 'lgr', 'RCurl', 'tidytable'), repos='https://cloud.r-project.org')"
@@ -30,7 +30,7 @@ jobs:
         run: Rscript inst/scripts/prettyStructuresTable.R
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: output/
@@ -40,7 +40,7 @@ jobs:
     runs-on: codeberg-tiny
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v7
         with:
           name: output
           path: output/
