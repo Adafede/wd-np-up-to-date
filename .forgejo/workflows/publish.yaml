@@ -17,8 +17,7 @@ jobs:
     container:
       image: ghcr.io/rocker-org/verse:latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
       - name: Install R dependencies
         run: Rscript -e "install.packages(c('gt', 'import', 'lgr', 'RCurl', 'tidytable'), repos='https://cloud.r-project.org')"
@@ -29,8 +28,7 @@ jobs:
       - name: Build
         run: Rscript inst/scripts/prettyStructuresTable.R
 
-      - name: Deploy to Codeberg Pages
-        uses: actions/git-pages@v2
+      - uses: actions/git-pages@v2
         with:
           site: https://adafede.codeberg.page/wd-np-up-to-date/ 
           token: ${{ forge.token }}
