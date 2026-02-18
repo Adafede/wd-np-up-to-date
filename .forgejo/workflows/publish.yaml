@@ -30,7 +30,7 @@ jobs:
         run: Rscript inst/scripts/prettyStructuresTable.R
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: output
           path: output/
@@ -40,7 +40,7 @@ jobs:
     runs-on: codeberg-tiny
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v7
         with:
           name: output
           path: output/
