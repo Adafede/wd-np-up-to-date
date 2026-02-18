@@ -32,5 +32,6 @@ jobs:
       - name: Deploy to Codeberg Pages
         uses: actions/git-pages@v2
         with:
+          site: https://adafede.codeberg.page/wd-np-up-to-date/ 
           token: ${{ forge.token }}
           source: output/
