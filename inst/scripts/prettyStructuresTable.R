@@ -22,10 +22,16 @@ source(
   file = "https://raw.githubusercontent.com/Adafede/cascade/main/R/wiki_progress.R"
 )
 source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/assert_utils.R"
+)
+source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/constants.R"
 )
 source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/error_utils.R"
 )
 source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_file.R"
@@ -38,6 +44,9 @@ source(
 )
 source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/retry_utils.R"
+)
+source(
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/validations_params.R"
 )
 source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/validations_utils.R"
