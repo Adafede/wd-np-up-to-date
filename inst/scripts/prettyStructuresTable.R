@@ -31,7 +31,7 @@ source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/create_dir.R"
 )
 source(
-  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/error_utils.R"
+  file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima-r/main/R/errors_utils.R"
 )
 source(
   file = "https://raw.githubusercontent.com/taxonomicallyinformedannotation/tima/main/R/get_file.R"
