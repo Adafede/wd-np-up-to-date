@@ -3,3 +3,4 @@ docs/*
 output/*
 .Rproj.user
 .DS_Store
+*.html
