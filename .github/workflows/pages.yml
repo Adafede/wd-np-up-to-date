@@ -32,13 +32,6 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           persist-credentials: false
-      - name: Cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
-        with:
-          path: ci/cache
-          key: ci-cache-${{ github.ref }}
-          restore-keys: |
-            ci-cache-${{ env.DEFAULT_BRANCH_REF }}
       - name: Setup R
         uses: r-lib/actions/setup-r@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05
         with:
@@ -46,11 +39,7 @@ jobs:
       - name: Setup R dependencies
         uses: r-lib/actions/setup-r-dependencies@f9a764fea8d5c63df6ef9a5c7795bf7deb5d7e05
         with:
-          extra-packages: any::pkgdown, local::.
-          needs: website
-      - name: Install Package
-        run: |
-          R CMD INSTALL .
+          extra-packages: local::.
       - name: Build
         run: |
           Rscript inst/scripts/prettyStructuresTable.R
